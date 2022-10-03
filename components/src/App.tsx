@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Main from './pages/Main/Main';
 import About from './pages/About/About';
@@ -10,7 +10,7 @@ function App() {
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/justkwer-REACT2022Q3/" element={<Layout />}>
             <Route index element={<Main />} />
             <Route path="about" element={<About />} />
             <Route path="404" element={<NotFoundPage />} />

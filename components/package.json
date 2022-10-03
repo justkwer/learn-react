@@ -21,10 +21,13 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
+    "lint": "eslint .",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "https://rolling-scopes-school.github.io/justkwer-REACT2022Q3/",
   "browserslist": {
     "production": [
       ">0.2%",

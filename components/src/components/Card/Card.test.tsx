@@ -39,4 +39,3 @@ test('Card test', async () => {
   expect(screen.getByText(regActors)).toBeInTheDocument();
   expect(screen.getByText(regPlot)).toBeInTheDocument();
 });
-
