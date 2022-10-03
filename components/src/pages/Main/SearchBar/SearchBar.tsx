@@ -25,7 +25,8 @@ export default class SearchBar extends Component<{ text?: string }, { text: stri
   };
 
   handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ text: e.target.value.trim() === '' ? 'Search' : e.target.value });
+    const value = e.target.value.trim() === '' ? 'Search' : e.target.value;
+    this.setState({ text: value });
   };
 
   render() {

@@ -8,7 +8,7 @@ const Card = ({ movie }: CardProps) => {
   const year = new Date(Released).getFullYear();
 
   return (
-    <CardStyled>
+    <CardStyled data-testid="Card">
       <figure>
         <img src={Poster} alt={Title} />
         <div>{imdbRating}</div>

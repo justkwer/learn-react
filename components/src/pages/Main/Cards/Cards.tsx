@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getMovies, ImdbId } from '../../../constants/constants';
+import { movies } from '../../../constants/constants';
 import Card from '../../../components/Card/Card';
 import { CardsStyled } from '../styled';
 import { ImbdMovies } from './Cards.models';
@@ -12,16 +12,8 @@ export default class Cards extends Component<Readonly<unknown>, { items: Array<I
     };
   }
 
-  async componentDidMount() {
-    const movies = ImdbId.map<Promise<ImbdMovies>>(getMovies);
-    await Promise.all(movies);
-    const itemsMovie: ImbdMovies[] = [];
-    movies.map((el) =>
-      el.then((value) => {
-        itemsMovie.push(value);
-      })
-    );
-    this.setState({ items: itemsMovie });
+  componentDidMount() {
+    this.setState({ items: movies });
   }
 
   componentWillUnmount() {
