@@ -1,22 +1,18 @@
 import React, { ChangeEvent, Component, MouseEvent } from 'react';
+import { SearchBarStyled } from '../styled';
+import { Button } from '../../../styled/theme';
+import { SvgGenerator } from '../../../components/SvgGenerator/SvgGenerator';
 
-export default class SearchBar extends Component<object, { text: string }> {
-  constructor(props: object) {
+export default class SearchBar extends Component<{ text?: string }, { text: string }> {
+  constructor(props: { text?: string }) {
     super(props);
     this.state = {
-      text: 'Search...',
+      text: localStorage.getItem('text') ?? 'Search',
     };
   }
 
-  componentDidMount() {
-    const storageText = localStorage.getItem('text');
-    storageText === null
-      ? this.setLocalStorage(this.state.text)
-      : this.setState({ text: storageText });
-  }
-
   componentWillUnmount() {
-    this.setLocalStorage(this.state.text);
+    this.setLocalStorage(this.state.text === '' ? 'Search' : this.state.text);
   }
 
   setLocalStorage = (value: string) => {
@@ -29,15 +25,18 @@ export default class SearchBar extends Component<object, { text: string }> {
   };
 
   handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ text: e.target.value });
+    this.setState({ text: e.target.value.trim() === '' ? 'Search' : e.target.value });
   };
 
   render() {
     return (
-      <form>
-        <input type="text" value={this.state.text} onChange={this.handleChange} />
-        <button onClick={this.handleClick}>Search</button>
-      </form>
+      <SearchBarStyled>
+        <div>
+          <SvgGenerator id="search" />
+          <input type="search" placeholder={this.state.text} onChange={this.handleChange} />
+        </div>
+        <Button onClick={this.handleClick}>Search</Button>
+      </SearchBarStyled>
     );
   }
 }
