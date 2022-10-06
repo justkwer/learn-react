@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { LabelStyled } from '../../styled';
 
 export default class Mail extends Component<Readonly<unknown>, Readonly<unknown>> {
   render() {
     return (
-      <label>
+      <LabelStyled>
         E-mail
-        <input type="text" defaultValue="" />
-      </label>
+        <input type="text" placeholder="example@example.com" />
+      </LabelStyled>
     );
   }
 }

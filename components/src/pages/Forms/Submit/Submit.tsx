@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { SubmitStyled } from '../styled';
 
 export default class Submit extends Component<Readonly<unknown>, Readonly<unknown>> {
   render() {
-    return <input type="submit" value="Submit Application" />;
+    return <SubmitStyled type="submit" value="Submit Application" />;
   }
 }

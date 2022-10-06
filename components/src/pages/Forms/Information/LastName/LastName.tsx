@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { LabelStyled } from '../../styled';
 
 export default class LastName extends Component<Readonly<unknown>, Readonly<unknown>> {
   render() {
     return (
-      <label>
+      <LabelStyled>
         Last Name
-        <input type="text" defaultValue="" />
-      </label>
+        <input type="text" placeholder="Snow" />
+      </LabelStyled>
     );
   }
 }

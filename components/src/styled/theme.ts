@@ -52,10 +52,10 @@ export const theme = {
     row: 'display: flex; justify-content: space-between;',
     colum: 'display: flex; justify-content: space-between; flex-direction: column;',
   },
-  shadow: '0px 2px 35px 14px rgba(13, 13, 13, 0.04);',
+  shadow: '0 0 10px 5px rgba(221, 221, 221, 1);',
   border: {
-    radius: '20px',
-    border: '2px solid',
+    primary: '20px',
+    secondary: '40px',
   },
   padding: {
     primary: '20px 40px',

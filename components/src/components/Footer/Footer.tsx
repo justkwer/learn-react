@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <FooterStyle>
       <section>
-        <p>React. Components</p>
+        <p>React by Kwer</p>
       </section>
     </FooterStyle>
   );

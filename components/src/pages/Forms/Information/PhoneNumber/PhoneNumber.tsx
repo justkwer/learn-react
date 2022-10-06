@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
+import { LabelStyled } from '../../styled';
 
 export default class PhoneNumber extends Component<Readonly<unknown>, Readonly<unknown>> {
   render() {
     return (
-      <label>
+      <LabelStyled>
         Phone Number
-        <input type="text" defaultValue="" />
-      </label>
+        <input type="text" placeholder="(000) 000 0000" />
+      </LabelStyled>
     );
   }
 }
