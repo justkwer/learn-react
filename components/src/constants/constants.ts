@@ -1,6 +1,7 @@
 export const NavigationList = [
-  { href: '/justkwer-REACT2022Q3/', text: 'Main' },
-  { href: '/justkwer-REACT2022Q3/about', text: 'About Us' },
+  { href: '/', text: 'Main' },
+  { href: '/about', text: 'About Us' },
+  { href: '/forms', text: 'Forms' },
 ];
 
 export const movies = [

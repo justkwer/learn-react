@@ -3,7 +3,7 @@ import { SearchBarStyled } from '../styled';
 import { Button } from '../../../styled/theme';
 import { SvgGenerator } from '../../../components/SvgGenerator/SvgGenerator';
 
-export default class SearchBar extends Component<{ text?: string }, { text: string }> {
+export default class SearchBar extends Component<Readonly<unknown>, { text: string }> {
   constructor(props: { text?: string }) {
     super(props);
     this.state = {
