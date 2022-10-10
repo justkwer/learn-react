@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.js": "/justkwer-REACT2022Q3/static/js/main.794e0d38.js",
+    "main.js": "/justkwer-REACT2022Q3/static/js/main.099cdeb7.js",
     "static/media/404.webp": "/justkwer-REACT2022Q3/static/media/404.19617fe3824298c348b9.webp",
+    "static/media/form.webp": "/justkwer-REACT2022Q3/static/media/form.9659922942dc68b67d05.webp",
     "static/media/about.webp": "/justkwer-REACT2022Q3/static/media/about.de6350c7ce43f041a53b.webp",
     "static/media/ease.webp": "/justkwer-REACT2022Q3/static/media/ease.537e9a56a3a71279bdd6.webp",
     "index.html": "/justkwer-REACT2022Q3/index.html",
-    "main.794e0d38.js.map": "/justkwer-REACT2022Q3/static/js/main.794e0d38.js.map"
+    "main.099cdeb7.js.map": "/justkwer-REACT2022Q3/static/js/main.099cdeb7.js.map"
   },
   "entrypoints": [
-    "static/js/main.794e0d38.js"
+    "static/js/main.099cdeb7.js"
   ]
 }
