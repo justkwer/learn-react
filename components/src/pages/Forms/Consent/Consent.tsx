@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { forwardRef, RefObject } from 'react';
 import { ConsentStyled } from '../styled';
 
-export default class Consent extends Component<Readonly<unknown>, Readonly<unknown>> {
-  render() {
+export const Consent = forwardRef<HTMLInputElement, { ref: RefObject<HTMLInputElement> }>(
+  (props, ref) => {
     return (
       <ConsentStyled>
-        <input type="checkbox" /> I agree to give the highest score to this student.
+        I agree to give the highest score to this student.
+        <input ref={ref} type="checkbox" />
       </ConsentStyled>
     );
   }
-}
+);
+
+export default Consent;

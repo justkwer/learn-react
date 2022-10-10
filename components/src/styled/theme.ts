@@ -23,6 +23,7 @@ export const theme = {
     white: '#FFFFFF',
     whiteG: '#F8F8FF',
     green: '#008000',
+    red: '#FF4500',
   },
   sizes: {
     main: '1280px',

@@ -1,13 +1,15 @@
-import React, { Component } from 'react';
+import React, { forwardRef, RefObject } from 'react';
 import { CommentsStyled, CommentsTextarea } from '../styled';
 
-export default class Comments extends Component<Readonly<unknown>, Readonly<unknown>> {
-  render() {
+export const Comments = forwardRef<HTMLTextAreaElement, { ref: RefObject<HTMLTextAreaElement> }>(
+  (props, ref) => {
     return (
       <CommentsStyled>
         Additional Comments
-        <CommentsTextarea rows={5} placeholder="Winter is coming..." />
+        <CommentsTextarea ref={ref} defaultValue="" rows={5} placeholder="Winter is coming..." />
       </CommentsStyled>
     );
   }
-}
+);
+
+export default Comments;

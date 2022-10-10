@@ -56,13 +56,14 @@ export const TitleStyled = styled.div`
 `;
 
 export const ConsentStyled = styled.label`
-  ${({ theme }) => theme.flex.row}
+  ${({ theme }) => theme.flex.row};
+  flex-direction: row-reverse;
   gap: 10px;
   justify-content: left;
   color: ${({ theme }) => theme.colors.dark};
 `;
 
-export const SubmitStyled = styled.input`
+export const InputStyled = styled.input`
   padding: 15px 45px;
   letter-spacing: ${({ theme }) => theme.fonts.spacing};
   font-size: 1.133em;
@@ -74,6 +75,10 @@ export const SubmitStyled = styled.input`
 
   &:hover {
     background: ${({ theme }) => theme.colors.secondary};
+  }
+
+  &:disabled {
+    background-color: gray;
   }
 `;
 
@@ -92,4 +97,32 @@ export const CommentsTextarea = styled.textarea`
     border-color: ${({ theme }) => theme.colors.secondary};
     outline: none;
   }
+`;
+
+export const InformationStyled = styled.div`
+  ${({ theme }) => theme.flex.row}
+  gap: 50px;
+`;
+
+export const InformationWrapper = styled.div`
+  ${({ theme }) => theme.flex.colum};
+  gap: 10px;
+`;
+
+export const GenderStyled = styled.select`
+  border: 2px solid ${({ theme }) => theme.colors.primary};
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 1.133em;
+
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.secondary};
+    outline: none;
+  }
+`;
+
+export const ValidErrorStyled = styled.p`
+  font-size: 0.7em;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.red};
 `;
