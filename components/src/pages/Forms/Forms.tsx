@@ -13,6 +13,7 @@ import PhoneNumber from './PhoneNumber/PhoneNumber';
 import FormsCards from './FormsCards/FormsCards';
 
 import {
+  CatImg,
   FormsStyled,
   FormStyled,
   InformationStyled,
@@ -27,6 +28,7 @@ import {
   checkValidName,
   checkValidPhoneNumber,
 } from '../../functions/functions';
+import SwitchCat from './SwitchCat/SwitchCat';
 
 export default class Forms extends Component<
   Readonly<unknown>,
@@ -41,6 +43,7 @@ export default class Forms extends Component<
   lastNameRef: RefObject<HTMLInputElement> = createRef();
   mailRef: RefObject<HTMLInputElement> = createRef();
   phoneNumberRef: RefObject<HTMLInputElement> = createRef();
+  switchCarRef: RefObject<HTMLInputElement> = createRef();
 
   constructor(props: Readonly<unknown>) {
     super(props);
@@ -54,6 +57,7 @@ export default class Forms extends Component<
       lastNameCheck: true,
       mailCheck: true,
       phoneNumberCheck: true,
+      showCat: false,
     };
   }
 
@@ -135,6 +139,11 @@ export default class Forms extends Component<
       case 'avatarCheck':
         !this.state.avatarCheck && this.setState({ avatarCheck: true }, this.checkSubmitButton);
         break;
+      case 'showCat':
+        this.setState((state) => ({
+          showCat: !state.showCat,
+        }));
+        break;
     }
   };
 
@@ -180,6 +189,7 @@ export default class Forms extends Component<
       lastNameCheck,
       mailCheck,
       phoneNumberCheck,
+      showCat,
     } = this.state;
     return (
       <>
@@ -229,6 +239,7 @@ export default class Forms extends Component<
             </InformationStyled>
             <Comments ref={this.commentsRef} />
             <Consent ref={this.consentRef} />
+            <SwitchCat ref={this.switchCarRef} validCallback={this.validCallback} />
             <InputStyled
               onClick={this.handleSubmit}
               type="submit"
@@ -238,6 +249,7 @@ export default class Forms extends Component<
           </FormStyled>
         </FormsStyled>
         {cards.length !== 0 && <FormsCards cards={cards} />}
+        {showCat && <CatImg src={require('../../assets/img/form.webp')} alt={'Show cat'} />}
       </>
     );
   }

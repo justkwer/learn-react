@@ -1,16 +1,19 @@
 import { ForwardedRef, RefObject } from 'react';
 
-export type SelectProps = {
+export interface SwitchCatProps {
+  innerRef?: ForwardedRef<HTMLInputElement>;
+  ref?: RefObject<HTMLInputElement>;
+  validCallback: (callbackName: string) => void;
+}
+
+export interface SelectProps {
   innerRef?: ForwardedRef<HTMLSelectElement>;
   ref?: RefObject<HTMLSelectElement>;
   validCallback: (callbackName: string) => void;
   isValidation: boolean | undefined;
-};
+}
 
-export type InputProps = {
-  innerRef?: ForwardedRef<HTMLInputElement>;
-  ref?: RefObject<HTMLInputElement>;
-  validCallback: (callbackName: string) => void;
+export interface InputProps extends SwitchCatProps {
   isValidation: boolean | undefined;
   firstNameCheck?: boolean;
   avatarCheck?: boolean;
@@ -18,10 +21,11 @@ export type InputProps = {
   lastNameCheck?: boolean;
   mailCheck?: boolean;
   phoneNumberCheck?: boolean;
-};
-export type InputState = {
+}
+
+export interface InputState {
   isValid: boolean;
-};
+}
 
 export interface FormsState {
   cards: FormCard[];
@@ -33,6 +37,7 @@ export interface FormsState {
   lastNameCheck: boolean;
   mailCheck: boolean;
   phoneNumberCheck: boolean;
+  showCat: boolean;
 }
 
 export interface FormCard {
@@ -55,7 +60,6 @@ export interface FormCardProps {
   card: FormCard;
 }
 
-export interface AvatarState {
-  isValid: boolean;
+export interface AvatarState extends InputState {
   imageUrl: string | ArrayBuffer | null;
 }

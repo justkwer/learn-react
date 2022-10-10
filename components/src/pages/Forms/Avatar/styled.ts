@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const AvatarStyled = styled.div`
+  position: relative;
+  top: -10px;
   padding: 5px;
   border: 2px dashed ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.border.primary};
