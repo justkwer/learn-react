@@ -47,19 +47,23 @@ export const SearchBarStyled = styled.form`
 
 export const CardsStyled = styled.div`
   ${({ theme }) => theme.flex.row}
+  flex-wrap: wrap;
   gap: 20px;
+  justify-content: flex-start;
   padding: 20px;
   border-radius: ${({ theme }) => theme.border.secondary};
   box-shadow: ${({ theme }) => theme.shadow};
+  max-width: 1100px;
 `;
 
 export const CardStyled = styled.div`
-  max-width: 250px;
+  width: 250px;
   border-radius: ${({ theme }) => theme.border.primary};
   padding: 5px;
 
   &:hover {
     box-shadow: ${({ theme }) => theme.shadow};
+    cursor: pointer;
   }
 
   figure {
@@ -69,34 +73,31 @@ export const CardStyled = styled.div`
       object-fit: cover;
       width: 100%;
       height: 350px;
-      border-top-left-radius: ${({ theme }) => theme.border.primary};
-      border-top-right-radius: ${({ theme }) => theme.border.primary};
+      border-radius: ${({ theme }) => theme.border.primary};
     }
 
-    div {
+    h3,
+    h4 {
+      padding: 5px;
+      bottom: 2%;
+      letter-spacing: ${({ theme }) => theme.fonts.spacing};
       position: absolute;
-      top: 2%;
-      left: 2%;
-      padding: 5px 10px;
-      border-radius: 100px;
-      background-color: ${({ theme }) => theme.colors.green};
+      background-color: ${({ theme }) => theme.colors.primary};
       color: ${({ theme }) => theme.colors.white};
+      border-radius: ${({ theme }) => theme.border.primary};
+    }
+
+    h3 {
+      right: 2%;
+    }
+
+    h4 {
+      left: 2%;
     }
   }
 
   figcaption {
     max-width: 250px;
-
-    div {
-      display: inline-flex;
-      font-size: 0.8em;
-      font-weight: 700;
-    }
-
-    h3,
-    p {
-      padding: 3px;
-    }
 
     h2 {
       font-family: ${({ theme }) => theme.fonts.familyS};
@@ -105,16 +106,6 @@ export const CardStyled = styled.div`
       text-align: center;
       font-size: 1.133em;
       padding: 10px 0;
-    }
-
-    p {
-      font-size: 0.8em;
-    }
-
-    h3 {
-      font-size: 0.6em;
-      letter-spacing: ${({ theme }) => theme.fonts.spacing};
-      max-width: 100%;
     }
   }
 `;

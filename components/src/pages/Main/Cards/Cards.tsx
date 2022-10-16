@@ -1,31 +1,41 @@
 import React, { Component } from 'react';
-import { movies } from '../../../constants/constants';
 import Card from '../../../components/Card/Card';
 import { CardsStyled } from '../styled';
-import { ImbdMovies } from './Cards.models';
+import { CardsProps, CardsState, ImbdSearch } from '../Main.model';
 
-export default class Cards extends Component<Readonly<unknown>, { items: Array<ImbdMovies> }> {
-  constructor(props: Readonly<unknown>) {
+export default class Cards extends Component<CardsProps, CardsState> {
+  constructor(props: CardsProps) {
     super(props);
     this.state = {
+      error: null,
+      isLoaded: false,
       items: [],
     };
   }
 
   componentDidMount() {
-    this.setState({ items: movies });
+    this.getMovies();
   }
 
-  componentWillUnmount() {
-    this.setState({ items: [] });
+  componentDidUpdate(prevProps: { searchText: string }) {
+    if (this.props.searchText !== prevProps.searchText) {
+      this.getMovies();
+    }
   }
+
+  getMovies = () => {
+    fetch(`https://www.omdbapi.com/?s=${this.props.searchText}&apikey=bac3fe50`)
+      .then((res) => res.json() as Promise<ImbdSearch>)
+      .then((result) => this.setState({ items: result.Search }));
+  };
 
   render() {
     const { items } = this.state;
+
     return (
       <CardsStyled>
         {items.map((item) => (
-          <Card movie={item} key={item.Title} />
+          <Card movie={item} key={item.imdbID} />
         ))}
       </CardsStyled>
     );

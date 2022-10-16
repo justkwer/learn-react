@@ -1,3 +1,36 @@
+export interface SearchBarProps {
+  getLocalStorage: string;
+  setSearchText: (value: string) => void;
+}
+
+export interface CardsProps {
+  searchText: string;
+}
+
+export interface CardsState {
+  error: null;
+  isLoaded: boolean;
+  items: Array<ImdbSearchProps>;
+}
+
+export interface ImbdSearch {
+  Response: string;
+  Search: Array<ImdbSearchProps>;
+  totalResults: string;
+}
+
+export interface ImdbSearchProps {
+  Poster: string;
+  Title: string;
+  Type: string;
+  Year: string;
+  imdbID: string;
+}
+
+export interface CardProps {
+  movie: ImdbSearchProps;
+}
+
 export interface ImbdMovies {
   Title: string;
   Year: string;
@@ -32,6 +65,3 @@ interface Rating {
   Value: string;
 }
 
-export interface CardProps {
-  movie: ImbdMovies;
-}

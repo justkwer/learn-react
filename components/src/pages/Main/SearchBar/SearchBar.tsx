@@ -2,30 +2,27 @@ import React, { ChangeEvent, Component, MouseEvent } from 'react';
 import { SearchBarStyled } from '../styled';
 import { Button } from '../../../styled/theme';
 import { SvgGenerator } from '../../../components/SvgGenerator/SvgGenerator';
+import { SearchBarProps } from '../Main.model';
 
-export default class SearchBar extends Component<Readonly<unknown>, { text: string }> {
-  constructor(props: { text?: string }) {
+export default class SearchBar extends Component<Readonly<SearchBarProps>, { text: string }> {
+  constructor(props: Readonly<SearchBarProps>) {
     super(props);
     this.state = {
-      text: localStorage.getItem('text') ?? 'Search',
+      text: this.props.getLocalStorage,
     };
   }
 
   componentWillUnmount() {
-    this.setLocalStorage(this.state.text === '' ? 'Search' : this.state.text);
+    localStorage.setItem('text', this.state.text === '' ? 'Game of Thrones' : this.state.text);
   }
-
-  setLocalStorage = (value: string) => {
-    localStorage.setItem('text', value);
-  };
 
   handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    this.setLocalStorage(this.state.text);
+    this.props.setSearchText(this.state.text);
   };
 
   handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim() === '' ? 'Search' : e.target.value;
+    const value = e.target.value.trim() === '' ? 'Game of Thrones' : e.target.value;
     this.setState({ text: value });
   };
 
