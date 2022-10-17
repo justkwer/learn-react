@@ -2,11 +2,11 @@ import React from 'react';
 import { CardStyled } from '../../pages/Main/styled';
 import { CardProps } from '../../pages/Main/Main.model';
 
-const Card = ({ movie }: CardProps) => {
-  const { Poster, Title, Type, Year } = movie;
+const Card = (props: CardProps) => {
+  const { Poster, Title, Type, Year, imdbID } = props.movie;
 
   return (
-    <CardStyled data-testid="Card">
+    <CardStyled data-testid="Card" onClick={() => props.setModalId(imdbID)}>
       <figure>
         <img src={Poster} alt={Title} />
         <h3>{Year}</h3>

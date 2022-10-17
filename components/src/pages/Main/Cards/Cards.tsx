@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import Card from '../../../components/Card/Card';
-import { CardsStyled } from '../styled';
+import { CardsStyled, Loading } from '../styled';
 import { CardsProps, CardsState, ImbdSearch } from '../Main.model';
 
 export default class Cards extends Component<CardsProps, CardsState> {
   constructor(props: CardsProps) {
     super(props);
     this.state = {
-      error: null,
+      error: '',
       isLoaded: false,
+      isActive: false,
       items: [],
     };
   }
@@ -24,20 +25,35 @@ export default class Cards extends Component<CardsProps, CardsState> {
   }
 
   getMovies = () => {
+    this.setState({ isActive: true });
     fetch(`https://www.omdbapi.com/?s=${this.props.searchText}&apikey=bac3fe50`)
       .then((res) => res.json() as Promise<ImbdSearch>)
-      .then((result) => this.setState({ items: result.Search }));
+      .then((result) => {
+        this.setState({ items: result.Search, isLoaded: true });
+        this.setState({ isActive: true });
+      })
+      .catch((e) => {
+        this.setState({ error: e.message });
+      });
   };
 
   render() {
-    const { items } = this.state;
+    const { items, isLoaded, error, isActive } = this.state;
 
-    return (
-      <CardsStyled>
-        {items.map((item) => (
-          <Card movie={item} key={item.imdbID} />
-        ))}
+    return isLoaded ? (
+      <CardsStyled isActive={isActive}>
+        {items ? (
+          items.map((item) => (
+            <Card movie={item} key={item.imdbID} setModalId={this.props.setModalId} />
+          ))
+        ) : (
+          <h2>No matches found... Please try another movie title.</h2>
+        )}
       </CardsStyled>
+    ) : error === '' ? (
+      <Loading isActive={isActive}>Loading...</Loading>
+    ) : (
+      <Loading isActive={isActive}>{error}</Loading>
     );
   }
 }

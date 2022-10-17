@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface SearchBarProps {
   getLocalStorage: string;
   setSearchText: (value: string) => void;
@@ -5,11 +7,13 @@ export interface SearchBarProps {
 
 export interface CardsProps {
   searchText: string;
+  setModalId: Dispatch<SetStateAction<string>>;
 }
 
 export interface CardsState {
-  error: null;
+  error: string;
   isLoaded: boolean;
+  isActive: boolean;
   items: Array<ImdbSearchProps>;
 }
 
@@ -29,39 +33,5 @@ export interface ImdbSearchProps {
 
 export interface CardProps {
   movie: ImdbSearchProps;
+  setModalId: Dispatch<SetStateAction<string>>;
 }
-
-export interface ImbdMovies {
-  Title: string;
-  Year: string;
-  Rated: string;
-  Released: string;
-  Runtime: string;
-  Genre: string;
-  Director: string;
-  Writer: string;
-  Actors: string;
-  Plot: string;
-  Language: string;
-  Country: string;
-  Awards: string;
-  Poster: string;
-  Ratings: Array<Rating>;
-  Metascore: string;
-  imdbRating: string;
-  imdbVotes: string;
-  imdbID: string;
-  Type: string;
-  DVD?: string;
-  BoxOffice?: string;
-  Production?: string;
-  Website?: string;
-  totalSeasons?: string;
-  Response: string;
-}
-
-interface Rating {
-  Source: string;
-  Value: string;
-}
-
