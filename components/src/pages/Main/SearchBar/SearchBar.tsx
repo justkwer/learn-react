@@ -1,5 +1,5 @@
 import React, { ChangeEvent, Component, MouseEvent } from 'react';
-import { SearchBarStyled } from '../styled';
+import { SearchBarStyled } from './styled';
 import { Button } from '../../../styled/theme';
 import { SvgGenerator } from '../../../components/SvgGenerator/SvgGenerator';
 import { SearchBarProps } from '../Main.model';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Rating } from './Modal.model';
+import { Rating } from '../Modal.model';
 import { ModalInfoRatingStyled } from './styled';
 
 const ModalInfoRating = ({ ratings }: { ratings: Array<Rating> }) => {

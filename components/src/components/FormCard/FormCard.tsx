@@ -1,6 +1,6 @@
 import React from 'react';
-import { FormCardStyled } from '../../pages/Forms/FormsCards/styled';
 import { FormCardProps } from '../../pages/Forms/Forms.model';
+import { FormCardStyled } from './styled';
 
 const FormCard = ({ card }: FormCardProps) => {
   const { firstName, lastName, birthDate, gender, mail, comments, consent, avatar, phoneNumber } =

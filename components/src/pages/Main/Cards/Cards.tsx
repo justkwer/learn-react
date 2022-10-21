@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Card from '../../../components/Card/Card';
-import { CardsStyled, Loading } from '../styled';
+import MainCard from '../../../components/MainCard/MainCard';
+import { CardsStyled, LoadingStyled } from './styled';
 import { CardsProps, CardsState, ImbdSearch } from '../Main.model';
 
 export default class Cards extends Component<CardsProps, CardsState> {
@@ -44,16 +44,16 @@ export default class Cards extends Component<CardsProps, CardsState> {
       <CardsStyled isActive={isActive}>
         {items ? (
           items.map((item) => (
-            <Card movie={item} key={item.imdbID} setModalId={this.props.setModalId} />
+            <MainCard movie={item} key={item.imdbID} setModalId={this.props.setModalId} />
           ))
         ) : (
           <h2>No matches found... Please try another movie title.</h2>
         )}
       </CardsStyled>
     ) : error === '' ? (
-      <Loading isActive={isActive}>Loading...</Loading>
+      <LoadingStyled isActive={isActive}>Loading...</LoadingStyled>
     ) : (
-      <Loading isActive={isActive}>{error}</Loading>
+      <LoadingStyled isActive={isActive}>{error}</LoadingStyled>
     );
   }
 }

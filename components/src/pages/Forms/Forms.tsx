@@ -17,7 +17,7 @@ import {
   FormsStyled,
   FormStyled,
   InformationStyled,
-  InformationWrapper,
+  InformationWrapperStyled,
   InputStyled,
 } from './styled';
 
@@ -202,7 +202,7 @@ export default class Forms extends Component<
               isValidation={avatarCheck}
             />
             <InformationStyled>
-              <InformationWrapper>
+              <InformationWrapperStyled>
                 <FirstName
                   ref={this.firstNameRef}
                   validCallback={this.validCallback}
@@ -218,8 +218,8 @@ export default class Forms extends Component<
                   validCallback={this.validCallback}
                   isValidation={mailCheck}
                 />
-              </InformationWrapper>
-              <InformationWrapper>
+              </InformationWrapperStyled>
+              <InformationWrapperStyled>
                 <LastName
                   ref={this.lastNameRef}
                   validCallback={this.validCallback}
@@ -235,7 +235,7 @@ export default class Forms extends Component<
                   validCallback={this.validCallback}
                   isValidation={phoneNumberCheck}
                 />
-              </InformationWrapper>
+              </InformationWrapperStyled>
             </InformationStyled>
             <Comments ref={this.commentsRef} />
             <Consent ref={this.consentRef} />

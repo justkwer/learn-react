@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import GlobalStyles from './styled/globalStyles';
 import { theme } from './styled/theme';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement);
 
 root.render(
   <StrictMode>

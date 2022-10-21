@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { ImbdMovies } from './Modal.model';
+import { ImbdMovies } from '../Modal.model';
 import { ModalInfoStyled } from './styled';
 import ModalInfoGenerator from './ModalInfoGenerator';
 import ModalInfoRating from './ModalInfoRating';
-import { Loading } from '../styled';
+import { LoadingStyled } from '../../Cards/styled';
 
 const ModalInfo = ({ id }: { id: string }) => {
   const [movie, setMovie] = useState({} as ImbdMovies);
@@ -54,9 +54,9 @@ const ModalInfo = ({ id }: { id: string }) => {
       </figcaption>
     </ModalInfoStyled>
   ) : error === '' ? (
-    <Loading isActive={isActive}>Loading...</Loading>
+    <LoadingStyled isActive={isActive}>Loading...</LoadingStyled>
   ) : (
-    <Loading isActive={isActive}>{error}</Loading>
+    <LoadingStyled isActive={isActive}>{error}</LoadingStyled>
   );
 };
 

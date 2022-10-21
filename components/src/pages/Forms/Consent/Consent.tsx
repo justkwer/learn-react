@@ -1,5 +1,5 @@
 import React, { forwardRef, RefObject } from 'react';
-import { ConsentStyled } from '../styled';
+import { ConsentStyled } from './styled';
 
 export const Consent = forwardRef<HTMLInputElement, { ref: RefObject<HTMLInputElement> }>(
   (props, ref) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ValidErrorStyled } from '../../pages/Forms/styled';
+import { ValidErrorStyled } from './styled';
 
 const ValidError = (props: { isValid: boolean; validMessage: string }) => {
   const { isValid, validMessage } = props;

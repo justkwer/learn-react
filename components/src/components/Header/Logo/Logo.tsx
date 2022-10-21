@@ -1,16 +1,16 @@
 import React from 'react';
-import { LogoStyle } from '../styled';
+import { LogoStyled } from '../styled';
 
 export const Logo = () => {
   return (
-    <LogoStyle>
+    <LogoStyled>
       <figure>
         <img src={require('../../../assets/img/ease.webp')} alt={'Error'} />
       </figure>
       <figcaption>
         <h2>ease</h2>
       </figcaption>
-    </LogoStyle>
+    </LogoStyled>
   );
 };
 

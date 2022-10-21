@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { NavigationList } from '../../../constants/constants';
-import { NavigationStyle } from '../styled';
+import { NavigationStyled } from '../styled';
 
 const Navigation = () => {
   return (
-    <NavigationStyle>
+    <NavigationStyled>
       <ul>
         {NavigationList.map(({ href, text }, index) => (
           <li key={index}>
@@ -15,7 +15,7 @@ const Navigation = () => {
           </li>
         ))}
       </ul>
-    </NavigationStyle>
+    </NavigationStyled>
   );
 };
 

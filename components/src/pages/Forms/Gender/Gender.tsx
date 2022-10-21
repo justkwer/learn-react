@@ -1,7 +1,8 @@
 import React, { ChangeEvent, Component, forwardRef } from 'react';
-import { GenderStyled, LabelStyled } from '../styled';
+import { GenderStyled } from './styled';
 import { SelectProps } from '../Forms.model';
 import ValidError from '../../../components/ValidErorr/ValidError';
+import { LabelStyled } from '../styled';
 
 class Gender extends Component<SelectProps, { isValid: boolean }> {
   constructor(props: SelectProps) {

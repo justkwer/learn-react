@@ -1,5 +1,5 @@
 import React, { forwardRef, RefObject } from 'react';
-import { CommentsStyled, CommentsTextarea } from '../styled';
+import { CommentsStyled, CommentsTextarea } from './styled';
 
 export const Comments = forwardRef<HTMLTextAreaElement, { ref: RefObject<HTMLTextAreaElement> }>(
   (props, ref) => {

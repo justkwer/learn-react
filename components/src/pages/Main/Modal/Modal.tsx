@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { ModalProps } from './Modal.model';
 import { createPortal } from 'react-dom';
-import { ModalForm, ModalWrapper } from './styled';
+import { ModalStyled, WrapperStyled } from './styled';
 import { SvgGenerator } from '../../../components/SvgGenerator/SvgGenerator';
-import ModalInfo from './ModalInfo';
+import ModalInfo from './ModalInfo/ModalInfo';
 
-const modalRoot = document.getElementById('modal') as HTMLElement;
+const modalRoot = document.getElementById('modal') as HTMLDivElement;
 
 const Modal = (props: ModalProps) => {
   const el = document.createElement('div');
@@ -19,14 +19,14 @@ const Modal = (props: ModalProps) => {
   });
 
   return createPortal(
-    <ModalWrapper onClick={() => setModalId('')}>
-      <ModalForm onClick={(e) => e.stopPropagation()}>
+    <ModalStyled onClick={() => setModalId('')}>
+      <WrapperStyled onClick={(e) => e.stopPropagation()}>
         <button onClick={() => setModalId('')}>
           <SvgGenerator id="btn" />
         </button>
         <ModalInfo id={id} />
-      </ModalForm>
-    </ModalWrapper>,
+      </WrapperStyled>
+    </ModalStyled>,
     el
   );
 };

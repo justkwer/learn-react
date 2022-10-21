@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AboutStyles = styled.main`
+export const AboutStyled = styled.main`
   margin: auto;
 
   section {
@@ -33,21 +33,7 @@ export const AboutStyles = styled.main`
         letter-spacing: ${({ theme }) => theme.fonts.spacing};
         color: ${({ theme }) => theme.colors.dark};
       }
-
-      a {
-        padding: 15px 45px;
-        letter-spacing: ${({ theme }) => theme.fonts.spacing};
-        font-size: 1.133em;
-        border-radius: 100px;
-        line-height: ${({ theme }) => theme.fonts.height.primary};
-        color: ${({ theme }) => theme.colors.white};
-        background: ${({ theme }) => theme.colors.primary};
-        max-width: max-content;
-
-        &:hover {
-          background: ${({ theme }) => theme.colors.secondary};
-        }
-      }
     }
   }
+}
 `;
