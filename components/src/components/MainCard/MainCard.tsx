@@ -1,6 +1,6 @@
 import React from 'react';
-import { CardProps } from '../../pages/Main/Main.model';
 import { MainCardStyled } from './styled';
+import { CardProps } from './MainCard.modal';
 
 const MainCard = (props: CardProps) => {
   const { Poster, Title, Type, Year, imdbID } = props.movie;

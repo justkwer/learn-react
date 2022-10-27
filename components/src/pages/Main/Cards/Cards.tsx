@@ -1,59 +1,41 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import MainCard from '../../../components/MainCard/MainCard';
 import { CardsStyled, LoadingStyled } from './styled';
-import { CardsProps, CardsState, ImbdSearch } from '../Main.model';
+import { CardsProps, ImbdSearch, ImdbSearchProps } from '../Main.model';
 
-export default class Cards extends Component<CardsProps, CardsState> {
-  constructor(props: CardsProps) {
-    super(props);
-    this.state = {
-      error: '',
-      isLoaded: false,
-      isActive: false,
-      items: [],
-    };
-  }
+const Cards = ({ searchText, setModalId }: CardsProps) => {
+  const [error, setError] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [items, setItems] = useState([] as Array<ImdbSearchProps>);
 
-  componentDidMount() {
-    this.getMovies();
-  }
-
-  componentDidUpdate(prevProps: { searchText: string }) {
-    if (this.props.searchText !== prevProps.searchText) {
-      this.getMovies();
-    }
-  }
-
-  getMovies = () => {
-    this.setState({ isActive: true });
-    fetch(`https://www.omdbapi.com/?s=${this.props.searchText}&apikey=bac3fe50`)
+  useEffect(() => {
+    setIsActive(true);
+    fetch(`https://www.omdbapi.com/?s=${searchText}&apikey=bac3fe50`)
       .then((res) => res.json() as Promise<ImbdSearch>)
       .then((result) => {
-        this.setState({ items: result.Search, isLoaded: true });
-        this.setState({ isActive: true });
+        setItems(result.Search);
+        setIsLoaded(true);
+        setIsActive(true);
       })
       .catch((e) => {
-        this.setState({ error: e.message });
+        setError(e.message);
       });
-  };
+  }, [searchText]);
 
-  render() {
-    const { items, isLoaded, error, isActive } = this.state;
+  return isLoaded ? (
+    <CardsStyled isActive={isActive}>
+      {items ? (
+        items.map((item) => <MainCard movie={item} key={item.imdbID} setModalId={setModalId} />)
+      ) : (
+        <h2>No matches found... Please try another movie title.</h2>
+      )}
+    </CardsStyled>
+  ) : error === '' ? (
+    <LoadingStyled isActive={isActive}>Loading...</LoadingStyled>
+  ) : (
+    <LoadingStyled isActive={isActive}>{error}</LoadingStyled>
+  );
+};
 
-    return isLoaded ? (
-      <CardsStyled isActive={isActive}>
-        {items ? (
-          items.map((item) => (
-            <MainCard movie={item} key={item.imdbID} setModalId={this.props.setModalId} />
-          ))
-        ) : (
-          <h2>No matches found... Please try another movie title.</h2>
-        )}
-      </CardsStyled>
-    ) : error === '' ? (
-      <LoadingStyled isActive={isActive}>Loading...</LoadingStyled>
-    ) : (
-      <LoadingStyled isActive={isActive}>{error}</LoadingStyled>
-    );
-  }
-}
+export default Cards;

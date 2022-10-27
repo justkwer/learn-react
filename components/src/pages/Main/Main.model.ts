@@ -10,13 +10,6 @@ export interface CardsProps {
   setModalId: Dispatch<SetStateAction<string>>;
 }
 
-export interface CardsState {
-  error: string;
-  isLoaded: boolean;
-  isActive: boolean;
-  items: Array<ImdbSearchProps>;
-}
-
 export interface ImbdSearch {
   Response: string;
   Search: Array<ImdbSearchProps>;
@@ -29,9 +22,4 @@ export interface ImdbSearchProps {
   Type: string;
   Year: string;
   imdbID: string;
-}
-
-export interface CardProps {
-  movie: ImdbSearchProps;
-  setModalId: Dispatch<SetStateAction<string>>;
 }

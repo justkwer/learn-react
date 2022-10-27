@@ -1,4 +1,4 @@
-import React, { Component, createRef, MouseEvent, RefObject } from 'react';
+import React, { MouseEvent, RefObject, useEffect, useRef, useState } from 'react';
 
 import Title from './Title/Title';
 import Avatar from './Avatar/Avatar';
@@ -11,6 +11,7 @@ import LastName from './LastName/LastName';
 import Gender from './Gender/Gender';
 import PhoneNumber from './PhoneNumber/PhoneNumber';
 import FormsCards from './FormsCards/FormsCards';
+import SwitchCat from './SwitchCat/SwitchCat';
 
 import {
   CatImg,
@@ -21,84 +22,71 @@ import {
   InputStyled,
 } from './styled';
 
-import { FormsState } from './Forms.model';
 import {
   checkValidBirthDate,
   checkValidMail,
   checkValidName,
   checkValidPhoneNumber,
 } from '../../functions/functions';
-import SwitchCat from './SwitchCat/SwitchCat';
+import { FormCard } from './Forms.model';
 
-export default class Forms extends Component<
-  Readonly<unknown>,
-  FormsState | Pick<FormsState, keyof FormsState>
-> {
-  avatarRef: RefObject<HTMLInputElement> = createRef();
-  birthDateRef: RefObject<HTMLInputElement> = createRef();
-  commentsRef: RefObject<HTMLTextAreaElement> = createRef();
-  consentRef: RefObject<HTMLInputElement> = createRef();
-  firstNameRef: RefObject<HTMLInputElement> = createRef();
-  genderRef: RefObject<HTMLSelectElement> = createRef();
-  lastNameRef: RefObject<HTMLInputElement> = createRef();
-  mailRef: RefObject<HTMLInputElement> = createRef();
-  phoneNumberRef: RefObject<HTMLInputElement> = createRef();
-  switchCarRef: RefObject<HTMLInputElement> = createRef();
+const Forms = () => {
+  const avatarRef: RefObject<HTMLInputElement> = useRef(null);
+  const birthDateRef: RefObject<HTMLInputElement> = useRef(null);
+  const commentsRef: RefObject<HTMLTextAreaElement> = useRef(null);
+  const consentRef: RefObject<HTMLInputElement> = useRef(null);
+  const firstNameRef: RefObject<HTMLInputElement> = useRef(null);
+  const genderRef: RefObject<HTMLSelectElement> = useRef(null);
+  const lastNameRef: RefObject<HTMLInputElement> = useRef(null);
+  const mailRef: RefObject<HTMLInputElement> = useRef(null);
+  const phoneNumberRef: RefObject<HTMLInputElement> = useRef(null);
+  const switchCarRef: RefObject<HTMLInputElement> = useRef(null);
 
-  constructor(props: Readonly<unknown>) {
-    super(props);
-    this.state = {
-      cards: [],
-      disableButton: false,
-      avatarCheck: true,
-      birthDateCheck: true,
-      firstNameCheck: true,
-      genderCheck: true,
-      lastNameCheck: true,
-      mailCheck: true,
-      phoneNumberCheck: true,
-      showCat: false,
-    };
-  }
+  const [cards, setCards] = useState([] as FormCard[]);
+  const [disableButton, setDisableButton] = useState(false);
+  const [avatarCheck, setAvatarCheck] = useState(true);
+  const [birthDateCheck, setBirthDateCheck] = useState(true);
+  const [firstNameCheck, setFirstNameCheck] = useState(true);
+  const [genderCheck, setGenderCheck] = useState(true);
+  const [lastNameCheck, setLastNameCheck] = useState(true);
+  const [mailCheck, setMailCheck] = useState(true);
+  const [phoneNumberCheck, setPhoneNumberCheck] = useState(true);
+  const [showCat, setShowCat] = useState(false);
 
-  handleSubmit = (e: MouseEvent<HTMLInputElement>) => {
+  const handleSubmit = (e: MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
-    this.checkValidation();
+    checkValidation();
   };
 
-  checkValidation = () => {
-    const avatarFile = this.avatarRef.current?.files?.item(0);
-    const birthDateValue = this.birthDateRef.current?.value;
-    const firstNameValue = this.firstNameRef.current?.value;
-    const genderValue = this.genderRef.current?.value;
-    const lastNameValue = this.lastNameRef.current?.value;
-    const mailValue = this.mailRef.current?.value;
-    const phoneNumberValue = this.phoneNumberRef.current?.value;
+  const checkValidation = () => {
+    const avatarFile = avatarRef.current?.files?.item(0);
+    const birthDateValue = birthDateRef.current?.value;
+    const firstNameValue = firstNameRef.current?.value;
+    const genderValue = genderRef.current?.value;
+    const lastNameValue = lastNameRef.current?.value;
+    const mailValue = mailRef.current?.value;
+    const phoneNumberValue = phoneNumberRef.current?.value;
 
     const isFirstNameValid = checkValidName(firstNameValue as string);
-    this.state.firstNameCheck !== isFirstNameValid &&
-      this.setState({ firstNameCheck: isFirstNameValid });
+    firstNameCheck !== isFirstNameValid && setFirstNameCheck(isFirstNameValid);
 
     const isLastNameValid = checkValidName(lastNameValue as string);
-    this.state.lastNameCheck !== isLastNameValid &&
-      this.setState({ lastNameCheck: isLastNameValid });
+    lastNameCheck !== isLastNameValid && setLastNameCheck(isLastNameValid);
 
     const isBirthDateValid = checkValidBirthDate(birthDateValue as string);
-    this.state.birthDateCheck !== isBirthDateValid &&
-      this.setState({ birthDateCheck: isBirthDateValid });
+    birthDateCheck !== isBirthDateValid && setBirthDateCheck(isBirthDateValid);
 
     const isGenderValid = genderValue !== 'Please Select';
-    this.state.birthDateCheck !== isGenderValid && this.setState({ genderCheck: isGenderValid });
+    genderCheck !== isGenderValid && setGenderCheck(isGenderValid);
 
     const isMailValid = checkValidMail(mailValue as string);
-    this.state.mailCheck !== isMailValid && this.setState({ mailCheck: isMailValid });
+    mailCheck !== isMailValid && setMailCheck(isMailValid);
 
     const isPhoneNumberValid = checkValidPhoneNumber(phoneNumberValue as string);
-    this.state.phoneNumberCheck !== isPhoneNumberValid &&
-      this.setState({ phoneNumberCheck: isPhoneNumberValid });
+    phoneNumberCheck !== isPhoneNumberValid && setPhoneNumberCheck(isPhoneNumberValid);
 
     const isAvatarValid = avatarFile !== null;
-    this.state.avatarCheck !== isAvatarValid && this.setState({ avatarCheck: isAvatarValid });
+    avatarCheck !== isAvatarValid && setAvatarCheck(isAvatarValid);
 
     if (
       isFirstNameValid &&
@@ -109,148 +97,135 @@ export default class Forms extends Component<
       isPhoneNumberValid &&
       isAvatarValid
     ) {
-      this.submitForm();
-    } else this.setState({ disableButton: true });
+      submitForm();
+    } else setDisableButton(true);
   };
 
-  validCallback = (callbackName: string) => {
+  const validCallback = (callbackName: string) => {
     switch (callbackName) {
       case 'lastNameCheck':
-        !this.state.lastNameCheck && this.setState({ lastNameCheck: true }, this.checkSubmitButton);
+        !lastNameCheck && setLastNameCheck(true);
+
         break;
       case 'firstNameCheck':
-        !this.state.firstNameCheck &&
-          this.setState({ firstNameCheck: true }, this.checkSubmitButton);
+        !firstNameCheck && setFirstNameCheck(true);
+
         break;
       case 'birthDateCheck':
-        !this.state.birthDateCheck &&
-          this.setState({ birthDateCheck: true }, this.checkSubmitButton);
+        !birthDateCheck && setBirthDateCheck(true);
+
         break;
       case 'genderCheck':
-        !this.state.genderCheck && this.setState({ genderCheck: true }, this.checkSubmitButton);
+        !genderCheck && setGenderCheck(true);
+
         break;
       case 'mailCheck':
-        !this.state.mailCheck && this.setState({ mailCheck: true }, this.checkSubmitButton);
+        !mailCheck && setMailCheck(true);
+
         break;
       case 'phoneNumberCheck':
-        !this.state.phoneNumberCheck &&
-          this.setState({ phoneNumberCheck: true }, this.checkSubmitButton);
+        !phoneNumberCheck && setPhoneNumberCheck(true);
+
         break;
       case 'avatarCheck':
-        !this.state.avatarCheck && this.setState({ avatarCheck: true }, this.checkSubmitButton);
+        !avatarCheck && setAvatarCheck(true);
+
         break;
       case 'showCat':
-        this.setState((state) => ({
-          showCat: !state.showCat,
-        }));
+        setShowCat((prevCat) => !prevCat);
         break;
     }
   };
 
-  checkSubmitButton = () => {
+  useEffect(() => {
     if (
-      this.state.firstNameCheck &&
-      this.state.avatarCheck &&
-      this.state.birthDateCheck &&
-      this.state.genderCheck &&
-      this.state.lastNameCheck &&
-      this.state.mailCheck &&
-      this.state.phoneNumberCheck
+      firstNameCheck &&
+      avatarCheck &&
+      birthDateCheck &&
+      genderCheck &&
+      lastNameCheck &&
+      mailCheck &&
+      phoneNumberCheck
     ) {
-      this.state.disableButton && this.setState({ disableButton: false });
-    } else !this.state.disableButton && this.setState({ disableButton: true });
-  };
+      disableButton && setDisableButton(false);
+    } else !disableButton && setDisableButton(true);
+  }, [
+    firstNameCheck,
+    avatarCheck,
+    birthDateCheck,
+    genderCheck,
+    lastNameCheck,
+    mailCheck,
+    phoneNumberCheck,
+    disableButton,
+  ]);
 
-  submitForm = () => {
+  const submitForm = () => {
     const card = {
-      avatar: this.avatarRef.current?.src,
-      birthDate: this.birthDateRef.current?.value,
-      comments: this.commentsRef.current?.value,
-      consent: this.consentRef.current?.checked,
-      firstName: this.firstNameRef.current?.value,
-      gender: this.genderRef.current?.value,
-      lastName: this.lastNameRef.current?.value,
-      mail: this.mailRef.current?.value,
-      phoneNumber: this.phoneNumberRef.current?.value,
+      avatar: avatarRef.current?.src,
+      birthDate: birthDateRef.current?.value,
+      comments: commentsRef.current?.value,
+      consent: consentRef.current?.checked,
+      firstName: firstNameRef.current?.value,
+      gender: genderRef.current?.value,
+      lastName: lastNameRef.current?.value,
+      mail: mailRef.current?.value,
+      phoneNumber: phoneNumberRef.current?.value,
     };
-    this.setState((state) => ({
-      cards: [...state.cards, card],
-    }));
+    setCards((prevCards) => {
+      return [...prevCards, card];
+    });
   };
 
-  render() {
-    const {
-      cards,
-      disableButton,
-      firstNameCheck,
-      avatarCheck,
-      birthDateCheck,
-      genderCheck,
-      lastNameCheck,
-      mailCheck,
-      phoneNumberCheck,
-      showCat,
-    } = this.state;
-    return (
-      <>
-        <FormsStyled>
-          <Title />
-          <FormStyled>
-            <Avatar
-              ref={this.avatarRef}
-              validCallback={this.validCallback}
-              isValidation={avatarCheck}
-            />
-            <InformationStyled>
-              <InformationWrapperStyled>
-                <FirstName
-                  ref={this.firstNameRef}
-                  validCallback={this.validCallback}
-                  isValidation={firstNameCheck}
-                />
-                <BirthDate
-                  ref={this.birthDateRef}
-                  validCallback={this.validCallback}
-                  isValidation={birthDateCheck}
-                />
-                <Mail
-                  ref={this.mailRef}
-                  validCallback={this.validCallback}
-                  isValidation={mailCheck}
-                />
-              </InformationWrapperStyled>
-              <InformationWrapperStyled>
-                <LastName
-                  ref={this.lastNameRef}
-                  validCallback={this.validCallback}
-                  isValidation={lastNameCheck}
-                />
-                <Gender
-                  ref={this.genderRef}
-                  validCallback={this.validCallback}
-                  isValidation={genderCheck}
-                />
-                <PhoneNumber
-                  ref={this.phoneNumberRef}
-                  validCallback={this.validCallback}
-                  isValidation={phoneNumberCheck}
-                />
-              </InformationWrapperStyled>
-            </InformationStyled>
-            <Comments ref={this.commentsRef} />
-            <Consent ref={this.consentRef} />
-            <SwitchCat ref={this.switchCarRef} validCallback={this.validCallback} />
-            <InputStyled
-              onClick={this.handleSubmit}
-              type="submit"
-              value="Submit Application"
-              disabled={disableButton}
-            />
-          </FormStyled>
-        </FormsStyled>
-        {cards.length !== 0 && <FormsCards cards={cards} />}
-        {showCat && <CatImg src={require('../../assets/img/form.webp')} alt={'Show cat'} />}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <FormsStyled>
+        <Title />
+        <FormStyled>
+          <Avatar ref={avatarRef} validCallback={validCallback} isValidation={avatarCheck} />
+          <InformationStyled>
+            <InformationWrapperStyled>
+              <FirstName
+                ref={firstNameRef}
+                validCallback={validCallback}
+                isValidation={firstNameCheck}
+              />
+              <BirthDate
+                ref={birthDateRef}
+                validCallback={validCallback}
+                isValidation={birthDateCheck}
+              />
+              <Mail ref={mailRef} validCallback={validCallback} isValidation={mailCheck} />
+            </InformationWrapperStyled>
+            <InformationWrapperStyled>
+              <LastName
+                ref={lastNameRef}
+                validCallback={validCallback}
+                isValidation={lastNameCheck}
+              />
+              <Gender ref={genderRef} validCallback={validCallback} isValidation={genderCheck} />
+              <PhoneNumber
+                ref={phoneNumberRef}
+                validCallback={validCallback}
+                isValidation={phoneNumberCheck}
+              />
+            </InformationWrapperStyled>
+          </InformationStyled>
+          <Comments ref={commentsRef} />
+          <Consent ref={consentRef} />
+          <SwitchCat ref={switchCarRef} validCallback={validCallback} />
+          <InputStyled
+            onClick={handleSubmit}
+            type="submit"
+            value="Submit Application"
+            disabled={disableButton}
+          />
+        </FormStyled>
+      </FormsStyled>
+      {cards.length !== 0 && <FormsCards cards={cards} />}
+      {showCat && <CatImg src={require('../../assets/img/form.webp')} alt={'Show cat'} />}
+    </>
+  );
+};
+
+export default Forms;

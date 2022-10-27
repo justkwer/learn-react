@@ -1,40 +1,37 @@
-import React, { ChangeEvent, Component, MouseEvent } from 'react';
+import React, { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { SearchBarStyled } from './styled';
 import { Button } from '../../../styled/theme';
 import { SvgGenerator } from '../../../components/SvgGenerator/SvgGenerator';
 import { SearchBarProps } from '../Main.model';
 
-export default class SearchBar extends Component<Readonly<SearchBarProps>, { text: string }> {
-  constructor(props: Readonly<SearchBarProps>) {
-    super(props);
-    this.state = {
-      text: this.props.getLocalStorage,
-    };
-  }
+const SearchBar = ({ getLocalStorage, setSearchText }: SearchBarProps) => {
+  const [text, setText] = useState(getLocalStorage);
 
-  componentWillUnmount() {
-    localStorage.setItem('text', this.state.text === '' ? 'Game of Thrones' : this.state.text);
-  }
-
-  handleClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    this.props.setSearchText(this.state.text);
+    setSearchText(text);
   };
 
-  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim() === '' ? 'Game of Thrones' : e.target.value;
-    this.setState({ text: value });
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.trim();
+    setText(value === '' ? 'Game of Thrones' : value);
   };
 
-  render() {
-    return (
-      <SearchBarStyled>
-        <div>
-          <SvgGenerator id="search" />
-          <input type="search" placeholder={this.state.text} onChange={this.handleChange} />
-        </div>
-        <Button onClick={this.handleClick}>Search</Button>
-      </SearchBarStyled>
-    );
-  }
-}
+  useEffect(() => {
+    return () => {
+      localStorage.setItem('text', text === '' ? 'Game of Thrones' : text);
+    };
+  }, [text]);
+
+  return (
+    <SearchBarStyled>
+      <div>
+        <SvgGenerator id="search" />
+        <input type="search" placeholder={text} onChange={handleChange} />
+      </div>
+      <Button onClick={handleClick}>Search</Button>
+    </SearchBarStyled>
+  );
+};
+
+export default SearchBar;
