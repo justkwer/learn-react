@@ -1,9 +1,9 @@
 import React from 'react';
-import { AboutStyles } from './styled';
+import { AboutStyled } from './styled';
 
 const About = () => {
   return (
-    <AboutStyles>
+    <AboutStyled>
       <section>
         <figure>
           <img src={require('../../assets/img/about.webp')} alt={'About us'} />
@@ -13,7 +13,7 @@ const About = () => {
           <p>We love sleep &#129316;</p>
         </figcaption>
       </section>
-    </AboutStyles>
+    </AboutStyled>
   );
 };
 

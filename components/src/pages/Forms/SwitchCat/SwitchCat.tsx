@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
-import { SwitchCatStyled } from '../styled';
+import { SwitchCatStyled } from './styled';
 import { SwitchCatProps } from '../Forms.model';
 
-export const SwitchCat = forwardRef<HTMLInputElement, SwitchCatProps>((props, ref) => {
+const SwitchCat = forwardRef<HTMLInputElement, SwitchCatProps>((props, ref) => {
   return (
     <SwitchCatStyled>
       Do you want to see the cat?)

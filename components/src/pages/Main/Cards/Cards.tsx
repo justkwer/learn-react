@@ -1,33 +1,41 @@
-import React, { Component } from 'react';
-import { movies } from '../../../constants/constants';
-import Card from '../../../components/Card/Card';
-import { CardsStyled } from '../styled';
-import { ImbdMovies } from './Cards.models';
+import React, { useEffect, useState } from 'react';
+import MainCard from '../../../components/MainCard/MainCard';
+import { CardsStyled, LoadingStyled } from './styled';
+import { CardsProps, ImbdSearch, ImdbSearchProps } from '../Main.model';
 
-export default class Cards extends Component<Readonly<unknown>, { items: Array<ImbdMovies> }> {
-  constructor(props: Readonly<unknown>) {
-    super(props);
-    this.state = {
-      items: [],
-    };
-  }
+const Cards = ({ searchText, setModalId }: CardsProps) => {
+  const [error, setError] = useState('');
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+  const [items, setItems] = useState([] as Array<ImdbSearchProps>);
 
-  componentDidMount() {
-    this.setState({ items: movies });
-  }
+  useEffect(() => {
+    setIsActive(true);
+    fetch(`https://www.omdbapi.com/?s=${searchText}&apikey=bac3fe50`)
+      .then((res) => res.json() as Promise<ImbdSearch>)
+      .then((result) => {
+        setItems(result.Search);
+        setIsLoaded(true);
+        setIsActive(true);
+      })
+      .catch((e) => {
+        setError(e.message);
+      });
+  }, [searchText]);
 
-  componentWillUnmount() {
-    this.setState({ items: [] });
-  }
+  return isLoaded ? (
+    <CardsStyled isActive={isActive}>
+      {items ? (
+        items.map((item) => <MainCard movie={item} key={item.imdbID} setModalId={setModalId} />)
+      ) : (
+        <h2>No matches found... Please try another movie title.</h2>
+      )}
+    </CardsStyled>
+  ) : error === '' ? (
+    <LoadingStyled isActive={isActive}>Loading...</LoadingStyled>
+  ) : (
+    <LoadingStyled isActive={isActive}>{error}</LoadingStyled>
+  );
+};
 
-  render() {
-    const { items } = this.state;
-    return (
-      <CardsStyled>
-        {items.map((item) => (
-          <Card movie={item} key={item.Title} />
-        ))}
-      </CardsStyled>
-    );
-  }
-}
+export default Cards;

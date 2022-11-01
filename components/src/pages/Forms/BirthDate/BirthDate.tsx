@@ -1,46 +1,28 @@
-import React, { ChangeEvent, Component, forwardRef } from 'react';
+import React, { ChangeEvent, forwardRef, useEffect, useState } from 'react';
 import { LabelStyled } from '../styled';
-import { InputProps, InputState } from '../Forms.model';
+import { InputProps } from '../Forms.model';
 import ValidError from '../../../components/ValidErorr/ValidError';
 
-class BirthDate extends Component<InputProps, InputState> {
-  constructor(props: InputProps) {
-    super(props);
-    this.state = {
-      isValid: true,
-    };
-  }
+const BirthDate = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+  const [isValid, setIsValid] = useState(true);
 
-  handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    !this.state.isValid && this.setState({ isValid: true });
-    !this.state.isValid && this.props.validCallback('birthDateCheck');
+    !isValid && setIsValid(true);
+    !isValid && props.validCallback('birthDateCheck');
   };
 
-  componentDidUpdate(prevProps: InputProps) {
-    if (this.props.isValidation !== prevProps.isValidation) {
-      this.setState({ isValid: this.props.isValidation as boolean });
-    }
-  }
+  useEffect(() => {
+    setIsValid(props.isValidation as boolean);
+  }, [props.isValidation]);
 
-  render() {
-    const { isValid } = this.state;
-    return (
-      <LabelStyled>
-        Birth Date
-        <input
-          ref={this.props.innerRef}
-          className="disabled"
-          type="date"
-          defaultValue=""
-          onChange={this.handleChange}
-        />
-        <ValidError isValid={isValid} validMessage="Please, pick Birth Date" />
-      </LabelStyled>
-    );
-  }
-}
+  return (
+    <LabelStyled>
+      Birth Date
+      <input ref={ref} className="disabled" type="date" defaultValue="" onChange={handleChange} />
+      <ValidError isValid={isValid} validMessage="Please, pick Birth Date" />
+    </LabelStyled>
+  );
+});
 
-export default forwardRef<HTMLInputElement, InputProps>((props, ref) => (
-  <BirthDate innerRef={ref} validCallback={props.validCallback} isValidation={props.isValidation} />
-));
+export default BirthDate;

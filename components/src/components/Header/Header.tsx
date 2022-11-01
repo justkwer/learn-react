@@ -1,16 +1,16 @@
 import React from 'react';
 import Navigation from './Navigation/Navigation';
 import Logo from './Logo/Logo';
-import { HeaderStyle } from './styled';
+import { HeaderStyled } from './styled';
 
 const Header = () => {
   return (
-    <HeaderStyle>
+    <HeaderStyled>
       <section>
         <Logo />
         <Navigation />
       </section>
-    </HeaderStyle>
+    </HeaderStyled>
   );
 };
 

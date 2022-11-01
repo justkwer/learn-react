@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { AboutStyled } from '../About/styled';
 
-export const ErrorMainStyle = styled.main`
+export const ErrorPageStyled = styled(AboutStyled)`
   background: ${({ theme }) => theme.colors.white};
   width: 100vw;
   height: 100vh;
@@ -13,29 +14,8 @@ export const ErrorMainStyle = styled.main`
 
   section {
     margin: auto;
-    padding: 5px 40px;
-    ${({ theme }) => theme.flex.row}
-    align-items: center;
 
     figcaption {
-      padding: 20px 60px;
-      ${({ theme }) => theme.flex.colum}
-      gap: 40px;
-      align-items: center;
-      text-align: center;
-
-      h1 {
-        font-weight: 700;
-        font-size: 3em;
-        letter-spacing: ${({ theme }) => theme.fonts.spacing};
-      }
-
-      p {
-        font-family: ${({ theme }) => theme.fonts.familyS};
-        letter-spacing: ${({ theme }) => theme.fonts.spacing};
-        color: ${({ theme }) => theme.colors.dark};
-      }
-
       a {
         padding: 15px 45px;
         letter-spacing: ${({ theme }) => theme.fonts.spacing};

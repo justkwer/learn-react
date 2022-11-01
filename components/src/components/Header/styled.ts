@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderStyle = styled.header`
+export const HeaderStyled = styled.header`
   section {
     padding: 10px 40px;
     ${({ theme }) => theme.flex.row};
@@ -10,7 +10,7 @@ export const HeaderStyle = styled.header`
   }
 `;
 
-export const NavigationStyle = styled.nav`
+export const NavigationStyled = styled.nav`
   ul {
     display: flex;
     gap: 35px;
@@ -35,7 +35,7 @@ export const NavigationStyle = styled.nav`
   }
 `;
 
-export const LogoStyle = styled.div`
+export const LogoStyled = styled.div`
   figure {
     img {
       max-width: 80px;

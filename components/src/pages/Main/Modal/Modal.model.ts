@@ -1,3 +1,10 @@
+import { Dispatch, SetStateAction } from 'react';
+
+export interface ModalProps {
+  id: string;
+  setModalId: Dispatch<SetStateAction<string>>;
+}
+
 export interface ImbdMovies {
   Title: string;
   Year: string;
@@ -27,11 +34,7 @@ export interface ImbdMovies {
   Response: string;
 }
 
-interface Rating {
+export interface Rating {
   Source: string;
   Value: string;
-}
-
-export interface CardProps {
-  movie: ImbdMovies;
 }
