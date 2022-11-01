@@ -6,7 +6,7 @@ import GlobalStyles from '../../../styled/globalStyles';
 import React from 'react';
 import Cards from './Cards';
 
-test('render Cards test', async () => {
+test('render FormsCards test', async () => {
   render(
     <ThemeProvider theme={theme}>
       <Cards />

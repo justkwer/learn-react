@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 export const MainStyled = styled.section`
   padding: 20px;
+  ${({ theme }) => theme.flex.colum};
+  gap: 30px;
+  align-items: end;
 `;
 
 export const SearchBarStyled = styled.form`
@@ -9,6 +12,9 @@ export const SearchBarStyled = styled.form`
   gap: 20px;
   justify-content: end;
   padding: 20px;
+  border-radius: ${({ theme }) => theme.border.secondary};
+  box-shadow: ${({ theme }) => theme.shadow};
+  max-width: max-content;
 
   div {
     display: inline-flex;
@@ -43,13 +49,17 @@ export const CardsStyled = styled.div`
   ${({ theme }) => theme.flex.row}
   gap: 20px;
   padding: 20px;
+  border-radius: ${({ theme }) => theme.border.secondary};
+  box-shadow: ${({ theme }) => theme.shadow};
 `;
 
 export const CardStyled = styled.div`
   max-width: 250px;
+  border-radius: ${({ theme }) => theme.border.primary};
+  padding: 5px;
 
   &:hover {
-    box-shadow: 0 2px 35px 14px rgba(13, 13, 13, 0.04);
+    box-shadow: ${({ theme }) => theme.shadow};
   }
 
   figure {
@@ -59,6 +69,8 @@ export const CardStyled = styled.div`
       object-fit: cover;
       width: 100%;
       height: 350px;
+      border-top-left-radius: ${({ theme }) => theme.border.primary};
+      border-top-right-radius: ${({ theme }) => theme.border.primary};
     }
 
     div {

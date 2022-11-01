@@ -4,15 +4,17 @@ import Layout from './components/Layout/Layout';
 import Main from './pages/Main/Main';
 import About from './pages/About/About';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
+import Forms from './pages/Forms/Forms';
 
 function App() {
   return (
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/justkwer-REACT2022Q3/" element={<Layout />}>
+          <Route path="/" element={<Layout />}>
             <Route index element={<Main />} />
             <Route path="about" element={<About />} />
+            <Route path="forms" element={<Forms />} />
             <Route path="404" element={<NotFoundPage />} />
             <Route path="*" element={<Navigate to="404" replace />} />
           </Route>

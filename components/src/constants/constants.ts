@@ -1,6 +1,7 @@
 export const NavigationList = [
-  { href: '/justkwer-REACT2022Q3/', text: 'Main' },
-  { href: '/justkwer-REACT2022Q3/about', text: 'About Us' },
+  { href: '/', text: 'Main' },
+  { href: '/about', text: 'About Us' },
+  { href: '/forms', text: 'Forms' },
 ];
 
 export const movies = [
@@ -52,7 +53,7 @@ export const movies = [
       'https://m.media-amazon.com/images/M/MV5BMDA5ZTZlMGQtNTMyMS00MzE5LTlmNTMtZDg5NTFiYzU3ZTUyXkEyXkFqcGdeQXVyNTMyNzc1MjA@._V1_SX300.jpg',
     Ratings: [],
     Metascore: 'N/A',
-    imdbRating: 'N/A',
+    imdbRating: '7.9',
     imdbVotes: '9',
     imdbID: 'tt13624526',
     Type: 'movie',
