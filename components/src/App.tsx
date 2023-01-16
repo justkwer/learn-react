@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/learn-react/" element={<Layout />}>
             <Route index element={<Main />} />
             <Route path="about" element={<About />} />
             <Route path="forms" element={<Forms />} />

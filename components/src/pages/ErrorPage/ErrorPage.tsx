@@ -15,7 +15,7 @@ const ErrorPage = () => {
             You must have picked the wrong door because i haven&apos;t been able to lay my eye on
             the page you&apos;ve been searching for.
           </p>
-          <Link to="/">BACK TO HOME</Link>
+          <Link to="/learn-react/">BACK TO HOME</Link>
         </figcaption>
       </section>
     </ErrorPageStyled>

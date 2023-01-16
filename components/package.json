@@ -27,7 +27,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://rolling-scopes-school.github.io/justkwer-REACT2022Q3/",
+  "homepage": "https://justkwer.github.io/learn-react",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -51,6 +51,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.31.8",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "gh-pages": "^4.0.0",
     "prettier": "2.7.1",
     "typescript": "^4.8.3"
   }

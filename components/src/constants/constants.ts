@@ -1,7 +1,7 @@
 export const NavigationList = [
-  { href: '/', text: 'Main' },
-  { href: '/about', text: 'About Us' },
-  { href: '/forms', text: 'Forms' },
+  { href: '/learn-react/', text: 'Main' },
+  { href: '/learn-react/about', text: 'About Us' },
+  { href: '/learn-react/forms', text: 'Forms' },
 ];
 
 export const testMovie = {
