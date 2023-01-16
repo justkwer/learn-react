@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/learn-react/static/js/main.a62707d8.js",
+    "static/media/404.webp": "/learn-react/static/media/404.19617fe3824298c348b9.webp",
+    "static/media/form.webp": "/learn-react/static/media/form.9659922942dc68b67d05.webp",
+    "static/media/about.webp": "/learn-react/static/media/about.de6350c7ce43f041a53b.webp",
+    "static/media/ease.webp": "/learn-react/static/media/ease.537e9a56a3a71279bdd6.webp",
+    "index.html": "/learn-react/index.html",
+    "main.a62707d8.js.map": "/learn-react/static/js/main.a62707d8.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.a62707d8.js"
+  ]
+}
