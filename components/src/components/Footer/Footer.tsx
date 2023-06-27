@@ -1,13 +1,13 @@
 import React from 'react';
-import { FooterStyle } from './styled';
+import { FooterStyled } from './styled';
 
 const Footer = () => {
   return (
-    <FooterStyle>
+    <FooterStyled>
       <section>
         <p>React by Kwer</p>
       </section>
-    </FooterStyle>
+    </FooterStyled>
   );
 };
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FooterStyle = styled.footer`
+export const FooterStyled = styled.footer`
   section {
     margin: auto;
     padding: 20px 40px;

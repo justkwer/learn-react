@@ -1,10 +1,10 @@
 import React from 'react';
-import { ErrorMainStyle } from './styled';
 import { Link } from 'react-router-dom';
+import { ErrorPageStyled } from './styled';
 
-const NotFoundPage = () => {
+const ErrorPage = () => {
   return (
-    <ErrorMainStyle>
+    <ErrorPageStyled>
       <section>
         <figure>
           <img src={require('../../assets/img/404.webp')} alt={'Error'} />
@@ -15,11 +15,11 @@ const NotFoundPage = () => {
             You must have picked the wrong door because i haven&apos;t been able to lay my eye on
             the page you&apos;ve been searching for.
           </p>
-          <Link to="/">BACK TO HOME</Link>
+          <Link to="/learn-react/">BACK TO HOME</Link>
         </figcaption>
       </section>
-    </ErrorMainStyle>
+    </ErrorPageStyled>
   );
 };
 
-export default NotFoundPage;
+export default ErrorPage;
